@@ -48,12 +48,18 @@ while(True):
 						pass
 
 				lst_ints.sort()
-				print d + " " + i + "from " a + "to " + b, lst_ints
+				print d + " " + i + "from " + a + "to " + b, lst_ints
 				best_price = lst_ints[0]
 				best_price_string = str(best_price)
 				f.write("best price for " + i + "departing from " + d + "on " + a + "and arriving " + b + "is ")
 				f.write(best_price_string + '\n')
 				if(best_price < 300):
+					message = "Flight avaliable to " + i + " for " + best_price_string + "departing from " + d
+					server.sendmail(sender, receiver, message)
+				if(best_price < 400 and (i is 'HNL')):
+					message = "Flight avaliable to " + i + " for " + best_price_string + "departing from " + d
+					server.sendmail(sender, receiver, message)
+				if(best_price < 450 and (i is 'LHR')):
 					message = "Flight avaliable to " + i + " for " + best_price_string + "departing from " + d
 					server.sendmail(sender, receiver, message)
 				time.sleep(10)
